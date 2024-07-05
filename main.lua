@@ -3,6 +3,7 @@ local ui = require("ui")
 
 Width = 15
 Height = 10
+Buttons = {}
 
 function love.load()
     Success = love.window.setMode(1500, 1000)
@@ -17,8 +18,32 @@ function love.load()
         end
         Grid[i] = temp
     end
-    button = ui.button:new(50, 50, 150, 50, Whale, "test")
+    local but = ui.button:new(50, 50, 150, 50, Whale, "test", Print1)
+    local but2 = ui.button:new(50, 100, 150, 50, Whale, "test2", function() Print2() end)
+    table.insert(Buttons, but)
+    table.insert(Buttons, but2)
 end
+
+
+function Print1()
+     print("1")
+end
+
+function Print2()
+     print("2")
+end
+
+function love.mousepressed(x, y, button)
+    for i = 1, #Buttons do
+        local but = Buttons[i]
+        if button == 1 then
+            if x >= but.x and x <= but.x + but.width and y >= but.y and y <= but.y + but.height then
+                but:on_click()
+            end
+        end
+    end
+end
+
 function love.update()
     WindowWidth = love.graphics.getWidth()
     WindowHeight = love.graphics.getHeight()
@@ -28,9 +53,22 @@ function love.update()
         Grid[x][y] = 1
         -- print(x,y)
     end
+    -- if love.mouse.isDown(1) then
+    --     local x = love.mouse.getX()
+    --     local y = love.mouse.getY()
+    --     if x >= but.x and x <= but.width then
+    --         but:on_click()
+    --     end
+    --     if y >= but.y and y <= but.width then
+    --         but:on_click()
+    --     end
+    -- end
 end
 function love.draw()
-    button:draw()
+    for i = 1, #Buttons do
+      local but = Buttons[i]
+      but:draw()
+    end    -- but:draw()
     love.graphics.print("Hello World", 400, 300)
     -- love.graphics.draw(Whale, 300, 200)
     for x=1, Width do
