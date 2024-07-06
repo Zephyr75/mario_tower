@@ -6,6 +6,7 @@ local utils = require("utils")
 
 Width = 15
 Height = 10
+Money = 500
 
 function love.load()
     love.window.setMode(1280, 720)
@@ -37,4 +38,5 @@ end
 function love.draw()
     grid.draw()
     shop.draw()
+    love.graphics.print(Money, 300, 300)
 end

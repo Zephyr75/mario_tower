@@ -5,8 +5,6 @@ local shop = {}
 
 local ui_shop = {}
 
-Money = 500
-
 function shop.load()
   local icon = love.graphics.newImage("tower_icon.png")
   local col = love.graphics.newImage("left.png")
