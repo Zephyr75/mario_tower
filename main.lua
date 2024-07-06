@@ -10,12 +10,12 @@ WindowHeight = love.graphics.getHeight()
 Width = 15
 Height = 10
 Money = 500
+CurrentBuy = nil
 
 
 local map1 = love.graphics.newImage("map1.png")
 
 function love.load()
-
     shop.load()
     grid.load()
 end
@@ -23,6 +23,8 @@ end
 function love.mousepressed(x, y, button)
     local ui_all = {}
     utils.insert_all(ui_all, shop.ui())
+
+    grid.place()
 
     for i = 1, #ui_all do
         local elem = ui_all[i]
@@ -35,7 +37,7 @@ function love.mousepressed(x, y, button)
 end
 
 function love.update()
-    grid.update()
+    -- grid.update()
     -- shop.update()
 end
 
@@ -44,4 +46,6 @@ function love.draw()
     grid.draw()
     shop.draw()
     love.graphics.print(Money, 300, 300)
+
+   love.graphics.print("fps: "..tostring(love.timer.getFPS( )), WindowWidth - 200, 10)
 end

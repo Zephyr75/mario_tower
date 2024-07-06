@@ -6,21 +6,11 @@ local preview = {}
 local icon = love.graphics.newImage("tower_icon.png")
 
 function preview:new(x, y, width, height, image, text, active)
-  local close_button = button:new(x + width - 50, y, 50, 50, icon, "X", function (p)
-    -- print(self)
-    p.active = false
-    print("test")
-  end)
-  local buy_button = button:new(x + width - 50, y + height - 50, 50, 50, icon, "X", function ()
-    Money = Money - 50
-  end)
+  local close_button = button:new(x + width - 50, y, 50, 50, icon, "X", nil)
+  local buy_button = button:new(x + width - 50, y + height - 50, 50, 50, icon, "X", nil)
   local new = {x = x, y = y, width = width, height = height, image = image, text = text, active = active, clickable = true, close_button = close_button, buy_button = buy_button}
   self.__index = self
   return setmetatable(new, self)
-end
-
-function preview:hide()
-  self.active = false
 end
 
 function preview:on_click()
@@ -31,6 +21,8 @@ function preview:on_click()
   end
   if self.buy_button:in_bounds(x, y) then
     Money = Money - 50
+    CurrentBuy = 1
+    self.active = false
   end
 
 end
