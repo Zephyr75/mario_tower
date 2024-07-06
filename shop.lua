@@ -5,8 +5,10 @@ local shop = {}
 
 local ui_shop = {}
 
+Money = 500
+
 function shop.load()
-  local icon = love.graphics.newImage("tower.png")
+  local icon = love.graphics.newImage("tower_icon.png")
   local col = love.graphics.newImage("left.png")
   local pre = love.graphics.newImage("preview.png")
   local p1 = ui.preview:new(100, 50, 300, 200, pre, "This is a banana treeThis is a banana treeThis is a banana treeThis is a banana tree", false)
@@ -44,16 +46,8 @@ function shop.draw()
   end
 end
 
-
-function shop.mousepressed(x, y, button)
-    for i = 1, #ui_shop do
-        local elem = ui_shop[i]
-        if button == 1 and elem.clickable then
-            if x >= elem.x and x <= elem.x + elem.width and y >= elem.y and y <= elem.y + elem.height then
-                elem:on_click()
-            end
-        end
-    end
+function shop.ui()
+  return ui_shop
 end
 
 
