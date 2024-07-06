@@ -4,14 +4,17 @@ local shop = require("shop")
 local grid = require("grid")
 local utils = require("utils")
 
+love.window.setMode(1000, 700)
+WindowWidth = love.graphics.getWidth()
+WindowHeight = love.graphics.getHeight()
 Width = 15
 Height = 10
 Money = 500
 
+
+local map1 = love.graphics.newImage("map1.png")
+
 function love.load()
-    love.window.setMode(1280, 720)
-    WindowWidth = love.graphics.getWidth()
-    WindowHeight = love.graphics.getHeight()
 
     shop.load()
     grid.load()
@@ -33,9 +36,11 @@ end
 
 function love.update()
     grid.update()
+    -- shop.update()
 end
 
 function love.draw()
+    love.graphics.draw(map1, WindowWidth - 900, WindowHeight - 600, 0, 900 / 15, 600 / 10)
     grid.draw()
     shop.draw()
     love.graphics.print(Money, 300, 300)

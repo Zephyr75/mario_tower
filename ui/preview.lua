@@ -6,7 +6,6 @@ local preview = {}
 local icon = love.graphics.newImage("tower_icon.png")
 
 function preview:new(x, y, width, height, image, text, active)
-  print(self)
   local close_button = button:new(x + width - 50, y, 50, 50, icon, "X", function (p)
     -- print(self)
     p.active = false
