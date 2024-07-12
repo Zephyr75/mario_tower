@@ -4,20 +4,24 @@ local shop = require("shop")
 local grid = require("grid")
 local utils = require("utils")
 
-love.window.setMode(1000, 700)
+love.window.setMode(1920, 1080)
 WindowWidth = love.graphics.getWidth()
 WindowHeight = love.graphics.getHeight()
 Width = 15
-Height = 10
+Height = 9
+Side = WindowHeight / Height
 Money = 500
 CurrentBuy = nil
-
+Black = {0, 0, 0, 1}
+White = {1, 1, 1, 1}
 
 local map1 = love.graphics.newImage("map1.png")
 
 function love.load()
     shop.load()
     grid.load()
+    local font = love.graphics.newFont("KOMIKAX_.ttf", 18)
+    love.graphics.setFont(font)
 end
 
 function love.mousepressed(x, y, button)
@@ -42,10 +46,10 @@ function love.update()
 end
 
 function love.draw()
-    love.graphics.draw(map1, WindowWidth - 900, WindowHeight - 600, 0, 900 / 15, 600 / 10)
+    love.graphics.draw(map1, Side, 0, 0, Side, Side)
     grid.draw()
     shop.draw()
-    love.graphics.print(Money, 300, 300)
 
-   love.graphics.print("fps: "..tostring(love.timer.getFPS( )), WindowWidth - 200, 10)
+   love.graphics.print("fps: "..tostring(love.timer.getFPS( )), WindowWidth - Side, 10)
+   love.graphics.print("money: " ..tostring(Money), WindowWidth - Side, 30)
 end
