@@ -7,7 +7,7 @@ local icon = love.graphics.newImage("tower_icon.png")
 
 function preview:new(x, y, width, height, image, text, index, active)
   local close_button = button:new(x + width - (Side / 2), y, Side / 2, Side / 2, icon, "X", nil)
-  local buy_button = button:new(x + Side, y + Side * 5 / 4, Side, Side / 2, icon, "Buy", nil)
+  local buy_button = button:new(x + Side, y + Side * 3 / 2, Side, Side / 2, icon, "Buy", nil)
   local new = {x = x, y = y, width = width, height = height, image = image, text = text, active = active, index = index, clickable = true, close_button = close_button, buy_button = buy_button}
   self.__index = self
   return setmetatable(new, self)
@@ -35,7 +35,7 @@ function preview:draw()
   local image_height = self.image:getHeight()
 
   love.graphics.draw(self.image, self.x, self.y, 0, self.width / image_width, self.height / image_height)
-  love.graphics.printf({White, self.text}, self.x + 15, self.y + 15, self.width - 80)
+  love.graphics.printf({Black, self.text}, self.x + 15, self.y + 15, self.width - 90)
   self.close_button:draw()
   self.buy_button:draw()
 end

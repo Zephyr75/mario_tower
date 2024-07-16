@@ -15,7 +15,7 @@ CurrentBuy = nil
 Black = {0, 0, 0, 1}
 White = {1, 1, 1, 1}
 
-local map1 = love.graphics.newImage("map1.png")
+local map1 = love.graphics.newImage("sprites/grass.png")
 
 function love.load()
     shop.load()
@@ -38,15 +38,29 @@ function love.mousepressed(x, y, button)
             end
         end
     end
+
 end
+
 
 function love.update()
     -- grid.update()
     -- shop.update()
 end
 
+
+function love.keypressed(key)
+    local x = math.ceil((love.mouse.getX() - Side) / Side)
+    local y = math.ceil(love.mouse.getY() / Side)
+    if key == "r" then
+        local value = math.floor(Map[y][x])
+        local rotation = Map[y][x] - value
+        Map[y][x] = value + ((rotation + 0.1) % 0.4)
+    end
+end
+
 function love.draw()
-    love.graphics.draw(map1, Side, 0, 0, Side, Side)
+    love.graphics.setBackgroundColor(0.608, 0.678, 0.718, 1)
+    love.graphics.draw(map1, Side, 0, 0, 4, 4)
     grid.draw()
     shop.draw()
 

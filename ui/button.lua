@@ -16,7 +16,7 @@ function button:draw()
   local image_width = self.image:getWidth()
   local image_height = self.image:getHeight()
   love.graphics.draw(self.image, self.x, self.y, 0, self.width / image_width, self.height / image_height)
-  love.graphics.printf({Black, self.text}, self.x + 25, self.y + 15, self.width)
+  love.graphics.printf({White, self.text}, self.x + 25, self.y + 15, self.width)
 end
 
 function button:in_bounds(x, y)
