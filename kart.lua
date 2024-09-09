@@ -1,13 +1,13 @@
-local tower = {}
+local kart = {}
 
-function tower:new()
+function kart:new()
   local new = {level = 0}
   self.__index = self
   return setmetatable(new, self)
 end
 
-function tower:upgrade()
+function kart:upgrade()
   self.level = self.level + 1
 end
 
-return tower
+return kart
